@@ -1,0 +1,6 @@
+Testing for Qiime 2 plugins has temporarily been disabled in the PluMA 
+test script.
+
+Qiime 2 output binary files have been found to differ for the same input data,
+and the cause must still be determined.
+
