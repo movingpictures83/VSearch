@@ -23,7 +23,7 @@ void VSearchPlugin::output(std::string file) {
    std::string command = "eval \"$(conda shell.bash hook)\"; ";
    command += "conda activate qiime2-2020.11; ";
    command += "qiime vsearch cluster-features-open-reference --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --i-reference-sequences "+myPrefix+"/"+parameters["referencesequences"]+" --p-perc-identity "+parameters["percidentity"]+" --o-clustered-table "+file+"-table-or-97.qza --o-clustered-sequences "+file+"-rep-seqs-or-97.qza --o-new-reference-sequences "+file+"-new-ref-seqs-or-97.qza; conda deactivate";
- std::cout << command << std::endl;
+ //std::cout << command << std::endl;
 
  system(command.c_str());
 }
