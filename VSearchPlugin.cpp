@@ -32,13 +32,21 @@ void VSearchPlugin::output(std::string file) {
 	      command += "--p-minovlen "+parameters["minovlen"]+" ";
       if (parameters.count("maxdiffs") != 0)
 	      command += "--p-maxdiffs "+parameters["maxdiffs"]+" ";
+      if (parameters.count("truncqual") != 0)
+	      command += "--p-truncqual "+parameters["truncqual"]+" ";
       command += "--o-joined-sequences "+file+"; ";
    }
    else if (op == "uchime-denovo") {
    command += "qiime vsearch "+parameters["op"]+" --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --o-chimeras "+file+"-chim-seqs.qza --o-nonchimeras "+file+"-nochim-seqs.qza --o-stats "+file+"-chim-stats.qza; ";
    }
    else if (op == "cluster-features-open-reference") {
-   command += "qiime vsearch "+parameters["op"]+" --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --i-reference-sequences "+myPrefix+"/"+parameters["referencesequences"]+" --p-perc-identity "+parameters["percidentity"]+" --o-clustered-table "+file+"-table-or-97.qza --o-clustered-sequences "+file+"-rep-seqs-or-97.qza --o-new-reference-sequences "+file+"-new-ref-seqs-or-97.qza; ";
+   command += "qiime vsearch "+parameters["op"]+" --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --i-reference-sequences "+myPrefix+"/"+parameters["referencesequences"]+" --p-perc-identity "+parameters["percidentity"]+" --o-clustered-table "+file+"-table-clustered.qza --o-clustered-sequences "+file+"-rep-seqs-clustered.qza --o-new-reference-sequences "+file+"-new-ref-seqs-clustered.qza; ";
+   }
+   else if (op == "cluster-features-closed-reference") {
+   command += "qiime vsearch "+parameters["op"]+" --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --i-reference-sequences "+myPrefix+"/"+parameters["referencesequences"]+" --p-perc-identity "+parameters["percidentity"]+" --o-clustered-table "+file+"-table-clustered.qza --o-clustered-sequences "+file+"-rep-seqs-clustered.qza --o-unmatched-sequences "+file+"-unmatched-clustered.qza; ";
+   }
+   else if (op == "cluster-features-de-novo") {
+   command += "qiime vsearch "+parameters["op"]+" --i-table "+myPrefix+"/"+parameters["table"]+" --i-sequences "+myPrefix+"/"+parameters["sequences"]+" --p-perc-identity "+parameters["percidentity"]+" --o-clustered-table "+file+"-table-clustered.qza --o-clustered-sequences "+file+"-rep-seqs-clustered.qza ; ";
    }
  //std::cout << command << std::endl;
 
